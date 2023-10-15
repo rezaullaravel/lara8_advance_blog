@@ -41,7 +41,7 @@ Blog Home
                         <div class="blog-item-content">
                             <div class="blog-item-meta mb-3 mt-4">
                                 <span class="text-muted text-capitalize mr-3"><i class="icofont-comment mr-2"></i>{{ count( $comments) }} Comments</span>
-                                <span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-1"></i> {{ $row->created_at }}</span>
+                                <span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-1"></i> {{ $row->created_at }} ({{ $row->view_post }} Views)</span>
                             </div>
                             <h2 class="mt-3 mb-3"><a href="{{ route('blog.single',$row->id) }}">{{ $row->title }}</a></h2>
                             <p class="mb-4">{!! Str::limit($row->description,50) !!}</p>

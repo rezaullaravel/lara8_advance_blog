@@ -3,6 +3,13 @@
 Blog Single Page
 @endsection
 
+<style>
+    .colorLove{
+color: red;
+font-size: 20px;
+    }
+</style>
+
 @section('main-content')
 <section class="page-title bg-1">
     <div class="overlay"></div>
@@ -32,6 +39,60 @@ Blog Single Page
                      <img src="{{ asset( $blog->image) }}" alt="" class="img-fluid" width="500">
                      <div class="blog-item-content mt-5">
                         <div class="blog-item-meta mb-3">
+
+
+
+
+
+                                    {{-- blog like dislike start --}}
+
+                                      @if (Auth::check())
+                                            @php
+                                            $love = DB::table('post_likes')->where('user_id',Auth::user()->id)->where('blog_id',$blog->id)->first();
+                                            @endphp
+
+
+                                                @if($love)
+                                                    <span class="text-muted text-capitalize mr-3">
+                                                        <a href="{{ route('blog.dislike',$blog->id) }}"  class="btn text-danger">Love</a>
+
+                                                    </span>
+                                                @else
+
+                                                <span class="text-muted text-capitalize mr-3">
+                                                    <form action="{{ route('blog.like') }}" method="POST" style="display: inline;">
+                                                    @csrf
+                                                    <input type="hidden" name="blogId" value="{{ $blog->id }}">
+                                                    <button type="submit" class="btn">Love</button>
+                                                    </form>
+
+                                                </span>
+                                            @endif
+                                      @endif
+
+
+                                     {{-- blog like lislike end --}}
+
+
+
+                            {{-- love count --}}
+                            @php
+                                $love_count = DB::table('post_likes')->where('blog_id',$blog->id)->get();
+                            @endphp
+                            @if (count( $love_count)>0)
+                                 <span class="text-muted text-capitalize mr-3">
+                                    <i class="las la-heart colorLove"></i>{{ count($love_count) }}
+                                </span>
+                            @endif
+
+                            <span class="text-muted text-capitalize mr-3">
+                                <i class="las la-user-circle"></i>
+                                @if ($blog->user_type=='admin')
+                                    {{ $blog->admin->name }}
+                                @else
+                                {{ $blog->user->name }}
+                                @endif
+                            </span>
                            <span class="text-muted text-capitalize mr-3"><i class="icofont-comment mr-2"></i> {{ count($comments) }} Comments</span>
                            <span class="text-black text-capitalize mr-3"><i class="icofont-calendar mr-2"></i>{{   $blog->created_at }}</span>
                         </div>

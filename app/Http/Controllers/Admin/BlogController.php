@@ -65,7 +65,7 @@ class BlogController extends Controller
 
     //manage blog
     public function manage(){
-        $blogs = Blog::all();
+        $blogs = Blog::where('user_type','admin')->orderBy('id','desc')->get();
         return view('admin.blog.index',compact('blogs'));
     }//end method
 
@@ -116,10 +116,8 @@ class BlogController extends Controller
             'category_id' =>'required',
             'title' => 'required',
             'description' => 'required',
-            'image' => 'required|image',
         ],[
             'category_id.required'=>'The category field is required',
-            'image.image'=>'The file must be an image'
         ]);
 
         //image upload

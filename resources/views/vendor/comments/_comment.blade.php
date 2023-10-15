@@ -11,6 +11,37 @@
         <div style="white-space: pre-wrap;">{!! $markdown->line($comment->comment) !!}</div>
 
         <div>
+            {{-- comment like and dislike --}}
+            @if (Auth::check())
+
+               @php
+                   $commentLike = DB::table('comment_likes')->where('comment_id',$comment->id)->where('user_id',Auth::user()->id)->first();
+               @endphp
+
+               @if ($commentLike)
+                <form action="{{ route('comment.dislike') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <input type="hidden" name="commentId" value="{{ $comment->id }}">
+                    <button type="submit"  class="btn text-success">Like</button>
+                </form>
+               @else
+                <form action="{{ route('comment.like') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <input type="hidden" name="commentId" value="{{ $comment->id }}">
+                    <button type="submit"  class="btn">Like</button>
+                </form>
+               @endif
+            @endif
+             {{-- comment like and dislike --}}
+             @php
+               $commentLike = DB::table('comment_likes')->where('comment_id',$comment->id)->get();
+             @endphp
+             @if (count($commentLike)>0)
+             <a href=""><i class="las la-thumbs-up"></i></a>{{ count($commentLike) }}
+             @else
+
+             @endif
+
             @can('reply-to-comment', $comment)
                 <button data-toggle="modal" data-target="#reply-modal-{{ $comment->getKey() }}" class="btn btn-sm btn-link text-uppercase">@lang('comments::comments.reply')</button>
             @endcan
@@ -119,3 +150,15 @@
         ])
     @endforeach
 @endif
+
+{{-- js code for refresh page and keep scroll position --}}
+<script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+    });
+
+    window.onbeforeunload = function(e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+</script>

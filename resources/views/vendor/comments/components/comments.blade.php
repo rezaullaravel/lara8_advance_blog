@@ -68,7 +68,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">@lang('comments::comments.authentication_required')</h5>
-            <p class="card-text">@lang('comments::comments.you_must_login_to_post_a_comment')</p>
+            <p class="card-text">You must login to post a comment, reply comment, like comment and give love react to blog.</p>
             <a href="{{ route('login') }}" class="btn btn-primary">@lang('comments::comments.log_in')</a>
         </div>
     </div>

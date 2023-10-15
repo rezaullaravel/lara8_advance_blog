@@ -16,6 +16,9 @@
       <link rel="stylesheet" href="{{ asset('/') }}frontend/plugins/slick-carousel/slick/slick-theme.css">
       <!-- Main Stylesheet -->
       <link rel="stylesheet" href="{{ asset('/') }}frontend/css/style.css">
+
+      {{-- line awesome cdn --}}
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css"/>
    </head>
    <body id="top">
       @include('frontend.body.header')

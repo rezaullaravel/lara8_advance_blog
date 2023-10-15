@@ -74,10 +74,11 @@
 
       </div>
       <!-- /.social-auth-links -->
-
-      <p class="mb-1">
-        <a href="forgot-password.html">I forgot my password</a>
-      </p>
+      @if (Route::has('password.request'))
+        <a class="btn btn-link" href="{{ route('password.request') }}">
+            {{ __('Forgot Your Password?') }}
+        </a>
+     @endif
     </div>
     <!-- /.login-card-body -->
   </div>

@@ -84,6 +84,25 @@
           </li>
 
 
+          <li class="nav-item {{ (request()->is('admin/frontend/blog*')) ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ (request()->is('admin/frontend/blog*')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Blog From Frontend
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" >
+              <li class="nav-item">
+                <a href="{{ route('admin.frontend.blog.manage') }}" class="nav-link {{ (request()->is('admin/frontend/blog/manage')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Frontend Blog</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
           <li class="nav-item {{ (request()->is('admin/profile*')) ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ (request()->is('admin/profile*')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -107,6 +126,87 @@
               </li>
             </ul>
           </li>
+
+          {{-- contact start --}}
+          <li class="nav-item {{ (request()->is('admin/contact/message*')) ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ (request()->is('admin/contact/message*')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Contact
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" >
+              <li class="nav-item">
+                <a href="{{ route('admin.contact-message.show') }}" class="nav-link {{ (request()->is('admin/contact/message/show')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Contact Message</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- contact end --}}
+
+
+          <li class="nav-item {{ (request()->is('admin/mail*')) ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ (request()->is('admin/mail*')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Email
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" >
+              <li class="nav-item">
+                <a href="{{ route('admin.mail.sending') }}" class="nav-link {{ (request()->is('admin/mail/sending')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  Send Mail</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
+          <li class="nav-item {{ (request()->is('admin/setting*')) ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ (request()->is('admin/setting*')) ? 'active' : '' }}">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Setting
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview" >
+              <li class="nav-item">
+                <a href="{{ route('admin.setting.header') }}" class="nav-link {{ (request()->is('admin/setting/header')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Header Setting</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('admin.setting.footer-left') }}" class="nav-link {{ (request()->is('admin/setting/footer-left')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Footer Left Setting</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('admin.setting.logo') }}" class="nav-link {{ (request()->is('admin/setting/logo')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Logo Setting</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{ route('admin.setting.about-us') }}" class="nav-link {{ (request()->is('admin/setting/about-us')) ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>About Us Setting</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
